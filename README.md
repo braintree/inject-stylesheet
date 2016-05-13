@@ -50,3 +50,7 @@ Keys are filtered based on whether or not a blacklist or whitelist was given. `i
 ### Values
 
 Values are checked against usages of `url()`, `evaluate()`, and other potentially abused and powerful CSS functions.
+
+## Browser Support
+
+All modern browsers, and IE9+
