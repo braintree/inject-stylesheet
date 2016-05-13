@@ -1,0 +1,31 @@
+{
+  "name": "inject-stylesheet",
+  "version": "1.0.0",
+  "description": "Programmatically inject a sanitized stylesheet",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint && karma start config/karma.js --single-run"
+  },
+  "author": "Braintree <code@getbraintree.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/braintree/inject-stylesheet"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "12.0.1",
+    "chai": "3.4.1",
+    "eslint": "2.7.0",
+    "eslint-config-braintree": "1.0.0",
+    "karma": "0.13.19",
+    "karma-browserify": "4.4.2",
+    "karma-chai-sinon": "0.1.5",
+    "karma-mocha": "0.2.1",
+    "karma-phantomjs-launcher": "1.0.0",
+    "mocha": "2.3.4",
+    "phantomjs-prebuilt": "2.1.7",
+    "sinon": "1.17.2",
+    "sinon-chai": "2.8.0"
+  }
+}
