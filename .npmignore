@@ -1,0 +1,9 @@
+test/
+config/
+gulpfile.js
+.travis.yml
+.eslintrc
+.eslintignore
+.nvmrc
+bower.json
+.npmignore
