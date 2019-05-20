@@ -1,15 +1,15 @@
 inject-stylesheet
 =================
 
-This library takes a blacklist (or whitelist) of CSS properties and sanitizes for known CSS exploits.
+This library takes a blocklist (or allowlist) of CSS properties and sanitizes for known CSS exploits.
 
 ## API
 
 Where mentioned, `styles` is an object with its keys being CSS selectors and values being CSS property key-value pairs.
 
 ```
-var stylesheet = injectStylesheet.injectWithBlacklist(styles [, blacklist]);
-var stylesheet = injectStylesheet.injectWithWhitelist(styles [, whitelist]);
+var stylesheet = injectStylesheet.injectWithBlocklist(styles [, blocklist]);
+var stylesheet = injectStylesheet.injectWithAllowlist(styles [, allowlist]);
 ```
 
 After usage, `stylesheet` will refer to the `<style>` tag that was injected into the `<head>` of the document.
@@ -30,11 +30,11 @@ var styles = {
     }
   }
 };
-var whitelist = [ 'font-size', 'color' ];
-var blacklist = [ 'background', 'display' ];
+var allowlist = [ 'font-size', 'color' ];
+var blocklist = [ 'background', 'display' ];
 
-injectStylesheet.injectWithBlacklist(styles, blacklist);
-injectStylesheet.injectWithWhitelist(styles, whitelist);
+injectStylesheet.injectWithBlocklist(styles, blocklist);
+injectStylesheet.injectWithAllowlist(styles, allowlist);
 ```
 
 ## Sanitization
@@ -45,7 +45,7 @@ Selectors are filtered for things such as `{}`, `@import`, etc.
 
 ### Keys
 
-Keys are filtered based on whether or not a blacklist or whitelist was given. `injectStylesheet` will assume that its second parameter is a blacklist unless the third parameter is `true`, which will designate it as a whitelist. This listing is used to filter the given CSS properties for exclusion or inclusion.
+Keys are filtered based on whether or not a blocklist or allowlist was given. `injectStylesheet` will assume that its second parameter is a blocklist unless the third parameter is `true`, which will designate it as a allowlist. This listing is used to filter the given CSS properties for exclusion or inclusion.
 
 ### Values
 
