@@ -1,7 +1,7 @@
 'use strict';
 
 var filterStyleKeys = require('../lib/filter-style-keys');
-var whitelist = require('./support/whitelist.json');
+var allowlist = require('./support/allowlist.json');
 
 describe('filterStyleKeys', function () {
   it('returns an empty object if passed nothing', function () {
@@ -17,18 +17,18 @@ describe('filterStyleKeys', function () {
       foo: 200,
       bar: 'abc',
       baz: 'what is braintree'
-    }, whitelist, true);
+    }, allowlist, true);
 
     expect(results).to.deep.equal({});
   });
 
-  it('returns only whitelisted keys', function () {
+  it('returns only allowlisted keys', function () {
     var results = filterStyleKeys({
       'background-color': 'tomato',
       color: 'blue',
       'font-size': 12,
       width: 200
-    }, whitelist, true);
+    }, allowlist, true);
 
     expect(results.color).to.equal('blue');
     expect(results['font-size']).to.equal(12);

@@ -1,7 +1,7 @@
 'use strict';
 
 var injectStylesheet = require('../lib/inject-stylesheet');
-var whitelist = require('./support/whitelist');
+var allowlist = require('./support/allowlist');
 
 describe('injectStylesheet', function () {
   function getStyle(element, property, state) {
@@ -44,7 +44,7 @@ describe('injectStylesheet', function () {
           'text-shadow': '0 0 10px red'
         }
       }
-    }, whitelist, true);
+    }, allowlist, true);
 
     expect(getStyle(div, 'font-size')).to.equal('24px');
     expect(getStyle(div, 'text-shadow')).to.equal(oldTextShadow);
@@ -76,7 +76,7 @@ describe('injectStylesheet', function () {
         background: 'red',
         color: 'aqua'
       }
-    }, whitelist, true);
+    }, allowlist, true);
 
     expect(getStyle(foo, 'font-size')).to.equal(fooOldFontSize);
     expect(getStyle(foo, 'background')).to.equal(fooOldBackground);

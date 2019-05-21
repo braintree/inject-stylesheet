@@ -1,7 +1,7 @@
 {
   "name": "inject-stylesheet",
   "version": "1.0.0",
-  "description": "Create a style element with CSS properties, filtering input using a whitelist or blacklist",
+  "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
