@@ -1,2 +1,3 @@
----
-  extends: eslint-config-braintree/client
+{
+  "extends": "eslint-config-braintree/client"
+}
