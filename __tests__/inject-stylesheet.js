@@ -18,7 +18,7 @@ describe('injectStylesheet', () => {
     }
   });
 
-  test('injects a <style> tag', () => {
+  it('injects a <style> tag', () => {
     let element;
 
     jest.spyOn(document.head, 'appendChild');
@@ -26,7 +26,7 @@ describe('injectStylesheet', () => {
     expect(document.head.appendChild).toBeCalledWith(element);
   });
 
-  test('injects a @media query', () => {
+  it('injects a @media query', () => {
     let oldTextShadow;
     const div = document.createElement('div');
 
@@ -55,7 +55,7 @@ describe('injectStylesheet', () => {
     expect(getStyle(div, 'color')).toBe('');
   });
 
-  test('injects the right content into the <style> tag', () => {
+  it('injects the right content into the <style> tag', () => {
     let fooOldFontSize, fooOldBackground, barOldBackground;
     const foo = document.createElement('div');
     const bar = document.createElement('input');

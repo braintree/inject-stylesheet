@@ -1,15 +1,15 @@
 const filterStyleValues = require('../lib/filter-style-values');
 
 describe('filterStyleValues', () => {
-  test('returns an empty object if passed nothing', () => {
+  it('returns an empty object if passed nothing', () => {
     expect(filterStyleValues()).toEqual({});
   });
 
-  test('returns an empty object if passed an empty object', () => {
+  it('returns an empty object if passed an empty object', () => {
     expect(filterStyleValues({})).toEqual({});
   });
 
-  test('prevents expression() statements', () => {
+  it('prevents expression() statements', () => {
     const result = filterStyleValues({
       color: 'expression(alert(1))',
       fontWeight: '500',
@@ -23,7 +23,7 @@ describe('filterStyleValues', () => {
     expect(result).toEqual(expected);
   });
 
-  test('prevents url() statements', () => {
+  it('prevents url() statements', () => {
     const result = filterStyleValues({
       backgroundImage: 'url("foo")',
       fontWeight: '500',
@@ -37,7 +37,7 @@ describe('filterStyleValues', () => {
     expect(result).toEqual(expected);
   });
 
-  test('prevents URL() statements', () => {
+  it('prevents URL() statements', () => {
     const result = filterStyleValues({
       backgroundImage: 'URL("foo")',
       fontWeight: '500',
@@ -51,7 +51,7 @@ describe('filterStyleValues', () => {
     expect(result).toEqual(expected);
   });
 
-  test('prevents -moz-binding declarations', () => {
+  it('prevents -moz-binding declarations', () => {
     const result = filterStyleValues({
       MozBinding: 'url("foo")',
       fontWeight: '500'
@@ -64,7 +64,7 @@ describe('filterStyleValues', () => {
     expect(result).toEqual(expected);
   });
 
-  test('HTML escapes a <script> tag', () => {
+  it('HTML escapes a <script> tag', () => {
     const result = filterStyleValues({
       color: '"/><script>alert("foo")</script><input '
     });
