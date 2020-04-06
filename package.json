@@ -4,6 +4,7 @@
   "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
   "main": "dist/index.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "prebuild": "prettier --write .",
     "build": "tsc",
     "lint": "eslint --ext js,ts .",
