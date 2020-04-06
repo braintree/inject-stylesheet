@@ -12,40 +12,30 @@
  * - https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#RULE_.234_-_CSS_Escape_And_Strictly_Validate_Before_Inserting_Untrusted_Data_into_HTML_Style_Property_Values
  */
 
-'use strict';
+const valueFilters = [/;/, /@import/i, /expression/i, /url/i, /javascript/i];
 
-var valueFilters = [
-  /;/,
-  /@import/i,
-  /expression/i,
-  /url/i,
-  /javascript/i
-];
-
-function htmlEscape(html) {
+function htmlEscape(html): string {
   return String(html)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
-function filterStyleValues(dirty) {
-  var clean = {};
-
-  dirty = dirty || {};
+export default function filterStyleValues(dirty = {}): Record<string, any> {
+  const clean = {};
 
   Object.keys(dirty).forEach(function (key) {
-    var value = dirty[key];
-    var unsanitary = valueFilters.some(function (regex) {
+    const value = dirty[key];
+    const unsanitary = valueFilters.some(function (regex) {
       return regex.test(value);
     });
 
-    if (unsanitary) { return; }
+    if (unsanitary) {
+      return;
+    }
 
     clean[key] = htmlEscape(dirty[key]);
   });
 
   return clean;
 }
-
-module.exports = filterStyleValues;

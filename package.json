@@ -4,7 +4,9 @@
   "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
+    "prebuild": "prettier --write .",
+    "build": "tsc",
+    "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
     "test": "jest"
   },
@@ -15,8 +17,15 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^25.1.4",
     "eslint": "^6.8.0",
-    "eslint-config-braintree": "^4.0.0",
-    "jest": "^25.1.0"
+    "eslint-config-braintree": "^5.0.0-typescript-prep-rc.17",
+    "jest": "^25.1.0",
+    "prettier": "^2.0.2",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest"
   }
 }

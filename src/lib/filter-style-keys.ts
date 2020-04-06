@@ -1,15 +1,17 @@
-'use strict';
+export default function filterStyleKeys(
+  styleObject,
+  propertyList?,
+  isAllowlist?
+): Record<string, any> {
+  const result = {};
 
-module.exports = function filterStyleKeys(styleObject, propertyList, isAllowlist) {
-  var result = {};
-
-  function allowlistFilter(key) {
+  function allowlistFilter(key): void {
     if (propertyList.indexOf(key) !== -1) {
       result[key] = styleObject[key];
     }
   }
 
-  function blocklistFilter(key) {
+  function blocklistFilter(key): void {
     if (propertyList.indexOf(key) === -1) {
       result[key] = styleObject[key];
     }
@@ -22,4 +24,4 @@ module.exports = function filterStyleKeys(styleObject, propertyList, isAllowlist
   }
 
   return result;
-};
+}
