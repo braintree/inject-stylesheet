@@ -3,10 +3,11 @@
   "version": "2.0.0",
   "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prepublishOnly": "npm run build",
     "prebuild": "prettier --write .",
-    "build": "tsc",
+    "build": "tsc --declaration",
     "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
     "test": "jest"
