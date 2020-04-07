@@ -1,4 +1,4 @@
-export default function validateSelector(selector): boolean {
+export default function validateSelector(selector: string): boolean {
   if (selector.trim().length === 0) {
     return false;
   }

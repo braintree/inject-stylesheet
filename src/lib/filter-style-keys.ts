@@ -1,17 +1,19 @@
+import { Style } from "./types";
+
 export default function filterStyleKeys(
-  styleObject,
-  propertyList?,
-  isAllowlist?
-): Record<string, any> {
+  styleObject: Style,
+  propertyList?: string[],
+  isAllowlist?: boolean
+): Record<string, string> {
   const result = {};
 
-  function allowlistFilter(key): void {
+  function allowlistFilter(key: string): void {
     if (propertyList.indexOf(key) !== -1) {
       result[key] = styleObject[key];
     }
   }
 
-  function blocklistFilter(key): void {
+  function blocklistFilter(key: string): void {
     if (propertyList.indexOf(key) === -1) {
       result[key] = styleObject[key];
     }

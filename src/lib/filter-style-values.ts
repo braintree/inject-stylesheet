@@ -14,6 +14,8 @@
 
 const valueFilters = [/;/, /@import/i, /expression/i, /url/i, /javascript/i];
 
+type StyleValue = Record<string, string>;
+
 function htmlEscape(html): string {
   return String(html)
     .replace(/&/g, "&amp;")
@@ -21,7 +23,7 @@ function htmlEscape(html): string {
     .replace(/>/g, "&gt;");
 }
 
-export default function filterStyleValues(dirty = {}): Record<string, any> {
+export default function filterStyleValues(dirty: StyleValue = {}): StyleValue {
   const clean = {};
 
   Object.keys(dirty).forEach(function (key) {

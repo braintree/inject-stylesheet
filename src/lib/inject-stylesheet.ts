@@ -2,15 +2,15 @@ import validateSelector from "./validate-selector";
 import filterStyleKeys from "./filter-style-keys";
 import filterStyleValues from "./filter-style-values";
 
+import { Style } from "./types";
+
 function isSelectorMediaQuery(selector): boolean {
   return /^@media\s+/i.test(selector);
 }
 
-function buildRule(selector, styles, curriedKeysFilter): string {
+function buildRule(selector: string, styles = {}, curriedKeysFilter): string {
   let result, sanitized;
   let constructedRule = selector + "{";
-
-  styles = styles || {};
 
   if (isSelectorMediaQuery(selector)) {
     Object.keys(styles).forEach(function (innerSelector) {
@@ -39,9 +39,9 @@ function buildRule(selector, styles, curriedKeysFilter): string {
 }
 
 export default function injectStylesheet(
-  styles?,
-  propertyList?,
-  isAllowlist?
+  styles: Style = {},
+  propertyList: string[] = [],
+  isAllowlist?: boolean
 ): HTMLStyleElement {
   let position = 0;
   const styleElement = document.createElement("style");
@@ -49,10 +49,7 @@ export default function injectStylesheet(
   document.querySelector("head").appendChild(styleElement);
   const stylesheet = styleElement.sheet as CSSStyleSheet;
 
-  styles = styles || {};
-  propertyList = propertyList || [];
-
-  function curriedKeysFilter(styleObject): Record<string, any> {
+  function curriedKeysFilter(styleObject): Style {
     return filterStyleKeys(styleObject, propertyList, isAllowlist);
   }
 
