@@ -2,10 +2,10 @@ import { Style } from "./types";
 
 export default function filterStyleKeys(
   styleObject: Style,
-  propertyList?: string[],
+  propertyList: string[] = [],
   isAllowlist?: boolean
-): Record<string, string> {
-  const result = {};
+): Style {
+  const result = {} as Style;
 
   function allowlistFilter(key: string): void {
     if (propertyList.indexOf(key) !== -1) {

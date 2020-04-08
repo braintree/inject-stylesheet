@@ -8,12 +8,9 @@ export default function validateSelector(selector: string): boolean {
   if (/import/i.test(selector)) {
     return false;
   }
-  if (/\{|\}/.test(selector)) {
-    return false;
-  }
-  if (/</.test(selector)) {
+  if (/[{}]/.test(selector)) {
     return false;
   }
 
-  return true;
+  return !/</.test(selector);
 }
