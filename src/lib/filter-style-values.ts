@@ -3,7 +3,7 @@
  *
  * - IE 5, 6, and 7 support computed properties via injecting JS with expression().
  * - JS can be executed in place of a url():
- * - background-color: "javascript:alert(1)"
+ *   - backround-color: "javascript:alert(1)"
  * - CSRF is possible using the url() function.
  * - The -moz-binding property for attaching XBL requires a URL.
  *

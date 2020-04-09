@@ -2,14 +2,14 @@ import injectStylesheet from "../lib/inject-stylesheet";
 import allowlist = require("./support/allowlist.json");
 
 describe("injectStylesheet", () => {
-  let testContext;
+  let testContext: Record<string, HTMLStyleElement>;
 
   beforeEach(() => {
     testContext = {};
   });
 
-  function getStyle(element, property, state = null): string | number {
-    return window.getComputedStyle(element, state).getPropertyValue(property);
+  function getStyle(element: HTMLElement, property: string): string | number {
+    return window.getComputedStyle(element).getPropertyValue(property);
   }
 
   afterEach(() => {
