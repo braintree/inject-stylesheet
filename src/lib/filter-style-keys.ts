@@ -1,6 +1,6 @@
 import { Style } from "./types";
 
-export default function filterStyleKeys(
+export function filterStyleKeys(
   styleObject: Style,
   propertyList: string[] = [],
   isAllowlist?: boolean

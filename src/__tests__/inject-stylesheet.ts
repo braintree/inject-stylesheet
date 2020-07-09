@@ -1,4 +1,4 @@
-import injectStylesheet from "../lib/inject-stylesheet";
+import { injectStylesheet } from "../lib/inject-stylesheet";
 import allowlist = require("./support/allowlist.json");
 
 describe("injectStylesheet", () => {

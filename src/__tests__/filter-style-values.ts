@@ -1,4 +1,4 @@
-import filterStyleValues from "../lib/filter-style-values";
+import { filterStyleValues } from "../lib/filter-style-values";
 
 describe("filterStyleValues", () => {
   it("returns an empty object if passed nothing", () => {

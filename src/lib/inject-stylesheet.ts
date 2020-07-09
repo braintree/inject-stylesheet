@@ -1,6 +1,6 @@
-import validateSelector from "./validate-selector";
-import filterStyleKeys from "./filter-style-keys";
-import filterStyleValues from "./filter-style-values";
+import { validateSelector } from "./validate-selector";
+import { filterStyleKeys } from "./filter-style-keys";
+import { filterStyleValues } from "./filter-style-values";
 
 import { Style } from "./types";
 
@@ -43,7 +43,7 @@ function buildRule(
   return constructedRule;
 }
 
-export default function injectStylesheet(
+export function injectStylesheet(
   styles: Style = {},
   propertyList: string[] = [],
   isAllowlist?: boolean

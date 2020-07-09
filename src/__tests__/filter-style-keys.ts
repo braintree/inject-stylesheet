@@ -1,4 +1,4 @@
-import filterStyleKeys from "../lib/filter-style-keys";
+import { filterStyleKeys } from "../lib/filter-style-keys";
 import allowlist = require("./support/allowlist.json");
 
 describe("filterStyleKeys", () => {

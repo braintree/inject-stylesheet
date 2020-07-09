@@ -1,4 +1,4 @@
-import injectStylesheet from "./lib/inject-stylesheet";
+import { injectStylesheet } from "./lib/inject-stylesheet";
 import { Style } from "./lib/types";
 
 export function injectWithAllowlist(

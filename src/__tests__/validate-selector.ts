@@ -1,4 +1,4 @@
-import validate from "../lib/validate-selector";
+import { validateSelector as validate } from "../lib/validate-selector";
 
 describe("validateSelector", () => {
   it("should return true for simple selectors", () => {

@@ -22,9 +22,7 @@ function htmlEscape(html: string): string {
     .replace(/>/g, "&gt;");
 }
 
-export default function filterStyleValues(
-  dirty: Record<string, string> = {}
-): Style {
+export function filterStyleValues(dirty: Record<string, string> = {}): Style {
   const clean = {} as Style;
 
   Object.keys(dirty).forEach((key) => {
