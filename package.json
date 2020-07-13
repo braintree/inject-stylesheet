@@ -2,9 +2,13 @@
   "name": "inject-stylesheet",
   "version": "2.0.0",
   "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint .",
+    "prepublishOnly": "npm run build",
+    "prebuild": "prettier --write .",
+    "build": "tsc --declaration",
+    "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
     "test": "jest"
   },
@@ -15,8 +19,20 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^25.2.1",
     "eslint": "^6.8.0",
-    "eslint-config-braintree": "^4.0.0",
-    "jest": "^25.1.0"
+    "eslint-config-braintree": "^5.0.0-typescript-prep-rc.17",
+    "jest": "^25.3.0",
+    "prettier": "^2.0.4",
+    "ts-jest": "^25.3.1",
+    "typescript": "^3.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "src/__tests__/tsconfig.json"
+      }
+    }
   }
 }

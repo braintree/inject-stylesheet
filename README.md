@@ -1,5 +1,4 @@
-inject-stylesheet
-=================
+# inject-stylesheet
 
 This library takes a blocklist (or allowlist) of CSS properties and sanitizes for known CSS exploits.
 
@@ -15,23 +14,23 @@ var stylesheet = injectStylesheet.injectWithAllowlist(styles [, allowlist]);
 After usage, `stylesheet` will refer to the `<style>` tag that was injected into the `<head>` of the document.
 
 ```javascript
-var injectStylesheet = require('inject-stylesheet');
+var injectStylesheet = require("inject-stylesheet");
 var styles = {
-  "input": {
+  input: {
     "font-size": "16pt",
-    "color": "#3A3A3A"
+    color: "#3A3A3A",
   },
   ".invalid": {
-    "color": "tomato"
+    color: "tomato",
   },
   "@media screen and (max-width: 700px)": {
-    "input": {
-      "font-size": "14pt"
-    }
-  }
+    input: {
+      "font-size": "14pt",
+    },
+  },
 };
-var allowlist = [ 'font-size', 'color' ];
-var blocklist = [ 'background', 'display' ];
+var allowlist = ["font-size", "color"];
+var blocklist = ["background", "display"];
 
 injectStylesheet.injectWithBlocklist(styles, blocklist);
 injectStylesheet.injectWithAllowlist(styles, allowlist);

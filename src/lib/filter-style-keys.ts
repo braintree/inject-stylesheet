@@ -1,15 +1,19 @@
-'use strict';
+import { Style } from "./types";
 
-module.exports = function filterStyleKeys(styleObject, propertyList, isAllowlist) {
-  var result = {};
+export function filterStyleKeys(
+  styleObject: Style,
+  propertyList: string[] = [],
+  isAllowlist?: boolean
+): Style {
+  const result = {} as Style;
 
-  function allowlistFilter(key) {
+  function allowlistFilter(key: string): void {
     if (propertyList.indexOf(key) !== -1) {
       result[key] = styleObject[key];
     }
   }
 
-  function blocklistFilter(key) {
+  function blocklistFilter(key: string): void {
     if (propertyList.indexOf(key) === -1) {
       result[key] = styleObject[key];
     }
@@ -22,4 +26,4 @@ module.exports = function filterStyleKeys(styleObject, propertyList, isAllowlist
   }
 
   return result;
-};
+}
