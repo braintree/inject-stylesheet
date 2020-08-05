@@ -81,7 +81,7 @@ export function injectStylesheet(
       }
       position++;
     } catch (err) {
-      if (!(err instanceof SyntaxError)) {
+      if (!(err instanceof SyntaxError || err instanceof DOMException)) {
         throw err;
       }
     }

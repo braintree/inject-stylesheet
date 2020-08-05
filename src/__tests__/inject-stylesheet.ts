@@ -1,6 +1,8 @@
 import { injectStylesheet } from "../lib/inject-stylesheet";
 import allowlist = require("./support/allowlist.json");
 
+import { mocked } from "ts-jest/utils";
+
 describe("injectStylesheet", () => {
   let testContext: Record<string, HTMLStyleElement>;
 
@@ -93,5 +95,56 @@ describe("injectStylesheet", () => {
     expect(getStyle(bar, "background")).toBe(barOldBackground);
     expect(getStyle(bar, "font-size")).toBe("24px");
     expect(getStyle(bar, "color")).toBe("aqua");
+  });
+
+  it.each`
+    errorType         | ErrorClass
+    ${"DOMException"} | ${DOMException}
+    ${"SyntaxError"}  | ${SyntaxError}
+  `("ignores $errorType errors when calling insertRule", ({ ErrorClass }) => {
+    const second = document.createElement("div");
+
+    second.id = "second";
+    document.body.appendChild(second);
+
+    jest.spyOn(CSSStyleSheet.prototype, "insertRule");
+    mocked(CSSStyleSheet.prototype.insertRule).mockImplementationOnce(
+      (str: string) => {
+        throw new ErrorClass(`fake dom exception from ${str}`);
+      }
+    );
+
+    testContext.element = injectStylesheet(
+      {
+        "#first": {
+          color: "orange",
+        },
+        "#second": {
+          color: "aqua",
+        },
+        "#third": {
+          color: "aqua",
+        },
+      },
+      allowlist,
+      true
+    );
+
+    expect(CSSStyleSheet.prototype.insertRule).toBeCalledTimes(3);
+    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+      "#first{color:orange;}",
+      0
+    );
+    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+      "#second{color:aqua;}",
+      0
+    );
+    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+      "#third{color:aqua;}",
+      1
+    );
+    expect(getStyle(second, "color")).toBe("aqua");
+
+    mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
   });
 });
