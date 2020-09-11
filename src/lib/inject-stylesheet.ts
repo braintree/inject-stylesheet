@@ -10,8 +10,8 @@ function isSelectorMediaQuery(selector: string): boolean {
 
 function buildRule(
   selector: string,
-  styles: Record<string, Style> | Style = {},
-  curriedKeysFilter: Function
+  styles: Style = {},
+  curriedKeysFilter: (styleRule: Style) => Style
 ): string {
   let result;
   let constructedRule = selector + "{";

@@ -22,7 +22,7 @@ function htmlEscape(html: string): string {
     .replace(/>/g, "&gt;");
 }
 
-export function filterStyleValues(dirty: Record<string, string> = {}): Style {
+export function filterStyleValues(dirty: Style = {}): Style {
   const clean = {} as Style;
 
   Object.keys(dirty).forEach((key) => {
@@ -31,7 +31,7 @@ export function filterStyleValues(dirty: Record<string, string> = {}): Style {
 
     if (unsanitary) return;
 
-    clean[key] = htmlEscape(dirty[key]);
+    clean[key] = htmlEscape(dirty[key] as string);
   });
 
   return clean;
