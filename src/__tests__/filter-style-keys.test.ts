@@ -1,5 +1,5 @@
 import { filterStyleKeys } from "../lib/filter-style-keys";
-import allowlist = require("./support/allowlist.json");
+import { allowlist } from "./../../support";
 
 describe("filterStyleKeys", () => {
   it("returns an empty object if passed nothing", () => {

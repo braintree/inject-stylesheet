@@ -1,5 +1,5 @@
 import { injectStylesheet } from "../lib/inject-stylesheet";
-import allowlist = require("./support/allowlist.json");
+import { allowlist } from "../../support";
 
 import { mocked } from "ts-jest/utils";
 

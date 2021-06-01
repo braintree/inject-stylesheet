@@ -1,4 +1,4 @@
-[
+export const allowlist = [
   "-moz-osx-font-smoothing",
   "-moz-transition",
   "-webkit-font-smoothing",
@@ -21,5 +21,5 @@
   "opacity",
   "outline",
   "text-shadow",
-  "transition"
-]
+  "transition",
+];
