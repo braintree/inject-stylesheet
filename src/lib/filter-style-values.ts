@@ -6,6 +6,7 @@
  *   - backround-color: "javascript:alert(1)"
  * - CSRF is possible using the url() function.
  * - The -moz-binding property for attaching XBL requires a URL.
+ * - The url/expression/javascript/etc exploits can also be accessed by using hexadecimal notation, ie `\\75\\72\\6C` is the hexadecimal representation of `url`.
  *
  * Resources:
  * - https://code.google.com/p/google-caja/wiki/CssAllowsArbitraryCodeExecution
@@ -13,25 +14,30 @@
  */
 import { Style } from "./types";
 
-const valueFilters = [/;/, /@import/i, /expression/i, /url/i, /javascript/i];
-
-function htmlEscape(html: string): string {
-  return String(html)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
+const valueFilters = [
+  // prevent injecting additional rules
+  /;/,
+  // prevent injecting script tags
+  /[<>]/,
+  // prevent hexadecimal characters
+  // (could allow an exploiter to get around the url/expression/javascript rules)
+  /\\/,
+  /@import/i,
+  /expression/i,
+  /url/i,
+  /javascript/i,
+];
 
 export function filterStyleValues(dirty: Style = {}): Style {
   const clean = {} as Style;
 
   Object.keys(dirty).forEach((key) => {
-    const value = dirty[key];
+    const value = String(dirty[key]);
     const unsanitary = valueFilters.some((regex) => regex.test(String(value)));
 
     if (unsanitary) return;
 
-    clean[key] = htmlEscape(dirty[key] as string);
+    clean[key] = value;
   });
 
   return clean;

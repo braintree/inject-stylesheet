@@ -9,6 +9,48 @@ describe("filterStyleValues", () => {
     expect(filterStyleValues({})).toEqual({});
   });
 
+  it("prevents hexademcial statements", () => {
+    const result = filterStyleValues({
+      color: "\\6a\\61\\76\\61\\73\\63\\72\\69\\70\\74",
+      fontWeight: "500",
+      fontStyle: "\\4a\\41\\56\\41\\53\\43\\52\\49\\50\\54",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents @import statements", () => {
+    const result = filterStyleValues({
+      color: "@import",
+      fontWeight: "500",
+      fontStyle: "@IMPORT",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents javascript statements", () => {
+    const result = filterStyleValues({
+      color: "javascript",
+      fontWeight: "500",
+      fontStyle: "JAVASCRIPT",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
   it("prevents expression() statements", () => {
     const result = filterStyleValues({
       color: "expression(alert(1))",
@@ -64,15 +106,16 @@ describe("filterStyleValues", () => {
     expect(result).toEqual(expected);
   });
 
-  it("HTML escapes a <script> tag", () => {
+  it("prevents < or >", () => {
     const result = filterStyleValues({
       color: '"/><script>alert("foo")</script><input ',
+      fontWeight: "500",
     });
 
     const expected = {
-      color: '"/&gt;&lt;script&gt;alert("foo")&lt;/script&gt;&lt;input ',
+      fontWeight: "500",
     };
 
-    expect(result.color).toBe(expected.color);
+    expect(result).toEqual(expected);
   });
 });
