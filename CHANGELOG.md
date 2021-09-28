@@ -1,4 +1,4 @@
-# unreleased
+# 5.0.0
 
   - Patch exploit where additional CSS rules could be inserted by
     appending them to a rule's value with `&`, `<` or `>`
