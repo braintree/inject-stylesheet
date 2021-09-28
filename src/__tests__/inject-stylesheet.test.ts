@@ -147,4 +147,28 @@ describe("injectStylesheet", () => {
 
     mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
   });
+
+  it("does not allow unsanitary rules", () => {
+    const foo = document.createElement("div");
+
+    foo.id = "foo";
+    document.body.appendChild(foo);
+
+    const fooOldBackground = getStyle(foo, "background");
+    const fooOldColor = getStyle(foo, "color");
+
+    testContext.element = injectStylesheet(
+      {
+        "#foo": {
+          color: "red<background:blue",
+          background: "orange;color:white",
+        },
+      },
+      allowlist,
+      true
+    );
+
+    expect(getStyle(foo, "background")).toBe(fooOldBackground);
+    expect(getStyle(foo, "color")).toBe(fooOldColor);
+  });
 });
