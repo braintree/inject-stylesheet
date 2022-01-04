@@ -1,8 +1,6 @@
 import { injectStylesheet } from "../lib/inject-stylesheet";
 import { allowlist } from "../../support";
 
-import { mocked } from "ts-jest/utils";
-
 describe("injectStylesheet", () => {
   let testContext: Record<string, HTMLStyleElement>;
 
@@ -108,11 +106,11 @@ describe("injectStylesheet", () => {
     document.body.appendChild(second);
 
     jest.spyOn(CSSStyleSheet.prototype, "insertRule");
-    mocked(CSSStyleSheet.prototype.insertRule).mockImplementationOnce(
-      (str: string) => {
+    jest
+      .mocked(CSSStyleSheet.prototype.insertRule)
+      .mockImplementationOnce((str: string) => {
         throw new ErrorClass(`fake dom exception from ${str}`);
-      }
-    );
+      });
 
     testContext.element = injectStylesheet(
       {
@@ -145,7 +143,7 @@ describe("injectStylesheet", () => {
     );
     expect(getStyle(second, "color")).toBe("aqua");
 
-    mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
+    jest.mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
   });
 
   it("does not allow unsanitary rules", () => {
