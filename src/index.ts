@@ -3,14 +3,14 @@ import { Style } from "./lib/types";
 
 export function injectWithAllowlist(
   styles: Style,
-  list: string[]
+  list: string[],
 ): HTMLStyleElement {
   return injectStylesheet(styles, list, true);
 }
 
 export function injectWithBlocklist(
   styles: Style,
-  list: string[]
+  list: string[],
 ): HTMLStyleElement {
   return injectStylesheet(styles, list, false);
 }

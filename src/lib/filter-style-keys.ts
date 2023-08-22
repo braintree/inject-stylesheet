@@ -3,7 +3,7 @@ import { Style } from "./types";
 export function filterStyleKeys(
   styleObject: Style,
   propertyList: string[] = [],
-  isAllowlist?: boolean
+  isAllowlist?: boolean,
 ): Style {
   const result = {} as Style;
 

@@ -48,7 +48,7 @@ describe("injectStylesheet", () => {
         },
       },
       allowlist,
-      true
+      true,
     );
 
     expect(getStyle(div, "font-size")).toBe("24px");
@@ -83,7 +83,7 @@ describe("injectStylesheet", () => {
         },
       },
       allowlist,
-      true
+      true,
     );
 
     expect(getStyle(foo, "font-size")).toBe(fooOldFontSize);
@@ -125,21 +125,21 @@ describe("injectStylesheet", () => {
         },
       },
       allowlist,
-      true
+      true,
     );
 
     expect(CSSStyleSheet.prototype.insertRule).toBeCalledTimes(3);
     expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
       "#first{color:orange;}",
-      0
+      0,
     );
     expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
       "#second{color:aqua;}",
-      0
+      0,
     );
     expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
       "#third{color:aqua;}",
-      1
+      1,
     );
     expect(getStyle(second, "color")).toBe("aqua");
 
@@ -163,7 +163,7 @@ describe("injectStylesheet", () => {
         },
       },
       allowlist,
-      true
+      true,
     );
 
     expect(getStyle(foo, "background")).toBe(fooOldBackground);

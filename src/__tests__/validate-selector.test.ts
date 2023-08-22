@@ -31,7 +31,7 @@ describe("validateSelector", () => {
 
   it("should return false if HTML is present", () => {
     expect(
-      validate('</style><script>console.log("creditCard");</script> *')
+      validate('</style><script>console.log("creditCard");</script> *'),
     ).toBe(false);
   });
 
