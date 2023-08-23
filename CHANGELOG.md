@@ -1,4 +1,7 @@
+# CHANGELOG
+
 # Unreleased
+
 - Update to node v18
 - Update to TypeScript 5
 - Update prettier to next major version
