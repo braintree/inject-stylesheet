@@ -1,3 +1,10 @@
+# Unreleased
+- Update to node v18
+- Update to TypeScript 5
+- Update prettier to next major version
+- Update eslint-plugin-prettier to next major version
+- Other minor dependency updates
+
 # 5.0.0
 
 - Patch exploit where additional CSS rules could be inserted by
