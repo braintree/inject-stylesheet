@@ -3,10 +3,12 @@
 # Unreleased
 
 - Update to node v18
-- Update to TypeScript 5
-- Update prettier to next major version
-- Update eslint-plugin-prettier to next major version
-- Other minor dependency updates
+
+- Dev Dependency Updates
+  - Update to TypeScript 5
+  - Update prettier to next major version
+  - Update eslint-plugin-prettier to next major version
+  - Other minor dependency updates
 
 # 5.0.0
 
