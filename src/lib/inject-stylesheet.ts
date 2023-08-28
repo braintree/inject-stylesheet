@@ -11,7 +11,7 @@ function isSelectorMediaQuery(selector: string): boolean {
 function buildRule(
   selector: string,
   styles: Style = {},
-  curriedKeysFilter: (styleRule: Style) => Style
+  curriedKeysFilter: (styleRule: Style) => Style,
 ): string {
   let result;
   let constructedRule = selector + "{";
@@ -25,7 +25,7 @@ function buildRule(
       constructedRule += buildRule(
         innerSelector,
         styles[innerSelector] as Style,
-        curriedKeysFilter
+        curriedKeysFilter,
       );
     });
   } else {
@@ -46,7 +46,7 @@ function buildRule(
 export function injectStylesheet(
   styles: Style = {},
   propertyList: string[] = [],
-  isAllowlist?: boolean
+  isAllowlist?: boolean,
 ): HTMLStyleElement {
   let position = 0;
   const styleElement = document.createElement("style");
@@ -66,7 +66,7 @@ export function injectStylesheet(
     const constructedRule = buildRule(
       selector,
       styles[selector] as Style,
-      curriedKeysFilter
+      curriedKeysFilter,
     );
 
     try {
@@ -76,7 +76,7 @@ export function injectStylesheet(
         stylesheet.addRule(
           selector,
           constructedRule.replace(/^[^{]+/, "").replace(/[{}]/g, ""),
-          position
+          position,
         );
       }
       position++;

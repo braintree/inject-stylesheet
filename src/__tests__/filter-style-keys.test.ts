@@ -18,7 +18,7 @@ describe("filterStyleKeys", () => {
         baz: "what is braintree",
       },
       allowlist,
-      true
+      true,
     );
 
     expect(results).toEqual({});
@@ -33,7 +33,7 @@ describe("filterStyleKeys", () => {
         width: 200,
       },
       allowlist,
-      true
+      true,
     );
 
     expect(results.color).toBe("blue");
