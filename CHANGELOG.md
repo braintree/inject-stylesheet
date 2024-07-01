@@ -1,6 +1,6 @@
 # CHANGELOG
 
-# UNRELEASED
+# 6.0.1
 
 - Updates braces to 3.0.3
 
