@@ -1,6 +1,6 @@
 {
   "name": "inject-stylesheet",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Create a style element with CSS properties, filtering input using a allowlist or blocklist",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
