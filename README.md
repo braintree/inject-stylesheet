@@ -6,7 +6,7 @@ This library takes a blocklist (or allowlist) of CSS properties and sanitizes fo
 
 Where mentioned, `styles` is an object with its keys being CSS selectors and values being CSS property key-value pairs.
 
-```
+``` javascript
 var stylesheet = injectStylesheet.injectWithBlocklist(styles [, blocklist]);
 var stylesheet = injectStylesheet.injectWithAllowlist(styles [, allowlist]);
 ```

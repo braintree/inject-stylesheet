@@ -1,17 +1,26 @@
-name: "Unit Tests"
+name: "CI"
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - "*"
 
 jobs:
   build:
-    name: "Unit Tests on Ubuntu"
+    name: "Formatter and Unit Tests on Ubuntu"
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "18.x"
-      - run: npm install
+          node-version-file: .nvmrc
+      - run: npm ci
+      - run: npx prettier --check .
       - run: npm test
