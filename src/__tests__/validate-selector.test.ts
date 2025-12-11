@@ -29,6 +29,17 @@ describe("validateSelector", () => {
     expect(validate("@SUPPORTS (-webkit-appearance:none) {}")).toBe(false);
   });
 
+  it("@ command is present, but is @media is valid", () => {
+    expect(validate("@media")).toBe(true);
+    expect(validate("@MEDIA")).toBe(true);
+  });
+
+  it("@ command is present, but any other @ command is not allowed", () => {
+    expect(validate("@font-family")).toBe(false);
+    expect(validate("@FONT-FAMILY")).toBe(false);
+    expect(validate("@anything")).toBe(false);
+  });
+
   it("should return false if HTML is present", () => {
     expect(
       validate('</style><script>console.log("creditCard");</script> *'),

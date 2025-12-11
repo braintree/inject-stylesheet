@@ -23,6 +23,8 @@ const valueFilters = [
   // (could allow an exploiter to get around the url/expression/javascript rules)
   /\\/,
   /@import/i,
+  // block all other @-rules, to be extra safe
+  /@[a-z-]+/gi,
   /expression/i,
   /url/i,
   /javascript/i,

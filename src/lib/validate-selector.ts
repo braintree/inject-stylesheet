@@ -8,6 +8,9 @@ export function validateSelector(selector: string): boolean {
   if (/import/i.test(selector)) {
     return false;
   }
+  if (/@(?!media\b)[a-z-]+/gi.test(selector)) {
+    return false;
+  }
   if (/[{}]/.test(selector)) {
     return false;
   }
