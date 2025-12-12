@@ -9,7 +9,7 @@ describe("filterStyleValues", () => {
     expect(filterStyleValues({})).toEqual({});
   });
 
-  it("prevents hexademcial statements", () => {
+  it("prevents hexadecimal statements", () => {
     const result = filterStyleValues({
       color: "\\6a\\61\\76\\61\\73\\63\\72\\69\\70\\74",
       fontWeight: "500",
@@ -23,7 +23,7 @@ describe("filterStyleValues", () => {
     expect(result).toEqual(expected);
   });
 
-  it("prevents @import statements", () => {
+  it("prevents at-rule statements", () => {
     const result = filterStyleValues({
       color: "@import",
       fontWeight: "500",

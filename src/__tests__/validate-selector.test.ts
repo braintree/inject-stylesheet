@@ -29,12 +29,12 @@ describe("validateSelector", () => {
     expect(validate("@SUPPORTS (-webkit-appearance:none) {}")).toBe(false);
   });
 
-  it("@ command is present, but is @media is valid", () => {
+  it("is valid when the only at-rule present is @media", () => {
     expect(validate("@media")).toBe(true);
     expect(validate("@MEDIA")).toBe(true);
   });
 
-  it("@ command is present, but any other @ command is not allowed", () => {
+  it("is not valid when disallowed at-rules are present", () => {
     expect(validate("@font-family")).toBe(false);
     expect(validate("@FONT-FAMILY")).toBe(false);
     expect(validate("@anything")).toBe(false);
