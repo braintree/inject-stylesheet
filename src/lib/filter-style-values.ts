@@ -22,7 +22,8 @@ const valueFilters = [
   // prevent hexadecimal characters
   // (could allow an exploiter to get around the url/expression/javascript rules)
   /\\/,
-  /@import/i,
+  // block all other @-rules, to be extra safe
+  /@[a-z-]+/i,
   /expression/i,
   /url/i,
   /javascript/i,

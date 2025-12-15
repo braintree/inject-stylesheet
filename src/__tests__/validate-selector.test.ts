@@ -29,6 +29,17 @@ describe("validateSelector", () => {
     expect(validate("@SUPPORTS (-webkit-appearance:none) {}")).toBe(false);
   });
 
+  it("is valid when the only at-rule present is @media", () => {
+    expect(validate("@media")).toBe(true);
+    expect(validate("@MEDIA")).toBe(true);
+  });
+
+  it("is not valid when disallowed at-rules are present", () => {
+    expect(validate("@font-family")).toBe(false);
+    expect(validate("@FONT-FAMILY")).toBe(false);
+    expect(validate("@anything")).toBe(false);
+  });
+
   it("should return false if HTML is present", () => {
     expect(
       validate('</style><script>console.log("creditCard");</script> *'),
