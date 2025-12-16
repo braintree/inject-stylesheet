@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 7.0.0
+
+_Breaking Changes_
+
+- Added logic to block `@-rule` selectors and values, excepting `@media`
+
 ## 6.0.2
 
 - Update (sub-)dependencies
