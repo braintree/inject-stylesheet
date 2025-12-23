@@ -9,7 +9,7 @@
   - prettier to 3.7.4
   - ts-jest to 29.4.6
   - typescript to 5.9.3
-- Update Node to v24  
+- Update Node to v24
 
 ## 7.0.0
 
