@@ -21,7 +21,7 @@ describe("injectStylesheet", () => {
   it("injects a <style> tag", () => {
     jest.spyOn(document.head, "appendChild");
     const element = injectStylesheet({});
-    expect(document.head.appendChild).toBeCalledWith(element);
+    expect(document.head.appendChild).toHaveBeenCalledWith(element);
   });
 
   it("injects a @media query", () => {
@@ -128,16 +128,16 @@ describe("injectStylesheet", () => {
       true,
     );
 
-    expect(CSSStyleSheet.prototype.insertRule).toBeCalledTimes(3);
-    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+    expect(CSSStyleSheet.prototype.insertRule).toHaveBeenCalledTimes(3);
+    expect(CSSStyleSheet.prototype.insertRule).toHaveBeenCalledWith(
       "#first{color:orange;}",
       0,
     );
-    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+    expect(CSSStyleSheet.prototype.insertRule).toHaveBeenCalledWith(
       "#second{color:aqua;}",
       0,
     );
-    expect(CSSStyleSheet.prototype.insertRule).toBeCalledWith(
+    expect(CSSStyleSheet.prototype.insertRule).toHaveBeenCalledWith(
       "#third{color:aqua;}",
       1,
     );
