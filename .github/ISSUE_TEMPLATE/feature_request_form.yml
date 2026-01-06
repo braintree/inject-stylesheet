@@ -13,7 +13,7 @@ body:
     attributes:
       label: Feature Summary
       description: In a few sentences or less, provide a concise description of the feature being requested.
-      placeholder: 'New feature that does ___; it can be used when ...'
+      placeholder: "New feature that does ___; it can be used when ..."
     validations:
       required: true
   - type: textarea
@@ -25,6 +25,6 @@ body:
           - What problem would this new feature solve?
           - How will this change affect users?
           - Is it a modification to existing functionality? Are you requesting a new/modified function input or output? Please provide an example of what the change might look like?
-      placeholder: 'New feature details.'
+      placeholder: "New feature details."
     validations:
       required: true
