@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## UNRELEASED
+## 7.0.1
 
 - Update dependencies
   - @types/jest to 30.0.0
@@ -13,9 +13,8 @@
 
 ## 7.0.0
 
-_Breaking Changes_
-
-- Added logic to block `@-rule` selectors and values, excepting `@media`
+- BREAKING CHANGES
+  - Added logic to block `@-rule` selectors and values, excepting `@media`
 
 ## 6.0.2
 
@@ -42,34 +41,28 @@ _Breaking Changes_
 - Patch exploit where additional CSS rules could be inserted by
   appending them to a rule's value with `&`, `<` or `>`
 
-_Breaking Changes_
-
-- No longer allow `\` in values for CSS rules
-- No longer allow `<` or `>` in values for CSS rules
+- BREAKING CHANGES
+  - No longer allow `\` in values for CSS rules
+  - No longer allow `<` or `>` in values for CSS rules
 
 ## 4.0.0
 
-_Breaking Changes_
-
-- Ignore `DOMException` errors when calling `insertRule` while
-  inserting stylesheet
+- BREAKING CHANGES
+  - Ignore `DOMException` errors when calling `insertRule` while inserting stylesheet
 
 ## 3.0.0
 
 - Add typescript types
 
-_Breaking Changes_
-
-- drop IE8 support
-- Throw any errors that are not `SyntaxError` when calling
-  `insertRule` while inserting stylesheet
+- BREAKING CHANGES
+  - drop IE8 support
+  - Throw any errors that are not `SyntaxError` when calling `insertRule` while inserting stylesheet
 
 ## 2.0.0
 
-_Breaking Changes_
-
-- change `injectWithBlacklist` to `injectWithBlocklist`
-- change `injectWithWhitelist` to `injectWithAllowlist`
+- BREAKING CHANGES
+  - change `injectWithBlacklist` to `injectWithBlocklist`
+  - change `injectWithWhitelist` to `injectWithAllowlist`
 
 ## 1.0.0
 
