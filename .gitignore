@@ -4,3 +4,4 @@ dist/js/
 npm-debug.log
 
 dist
+coverage/
