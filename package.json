@@ -11,7 +11,8 @@
     "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
     "test": "jest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "cz"
   },
   "author": "Braintree <code@getbraintree.com>",
   "repository": {
@@ -20,9 +21,13 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "commitizen": "^4.3.1",
+    "cz-customizable": "^7.5.4",
     "eslint": "^8.57.1",
     "eslint-config-braintree": "^6.0.0-typescript-prep-rc.2",
     "eslint-plugin-prettier": "^5.0.0",
@@ -53,6 +58,11 @@
         "branches": 80,
         "functions": 80
       }
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
     }
   }
 }
