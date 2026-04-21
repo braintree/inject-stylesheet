@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## UNRELEASED
+
 ## 7.0.2
 
 - Add @types/node 24.0.0
