@@ -28,10 +28,51 @@ function buildRule(
         curriedKeysFilter,
       );
     });
+  } else {
+    result = curriedKeysFilter(styles);
+
+    const sanitized = filterStyleValues(result);
+
+    Object.keys(sanitized).forEach((rule) => {
+      constructedRule += rule + ":" + sanitized[rule] + ";";
+    });
+  }
+
+  constructedRule += "}";
+
+  return constructedRule;
+}
+
+export function injectStylesheet(
+  styles: Style = {},
+  propertyList: string[] = [],
+  isAllowlist?: boolean,
+): HTMLStyleElement {
+  let position = 0;
+  const styleElement = document.createElement("style");
+
+  (document.querySelector("head") as HTMLHeadElement).appendChild(styleElement);
+  const stylesheet = styleElement.sheet as CSSStyleSheet;
+
+  function curriedKeysFilter(styleObject: Style): Style {
+    return filterStyleKeys(styleObject, propertyList, isAllowlist);
+  }
+
+  Object.keys(styles).forEach((selector) => {
+    if (!validateSelector(selector)) {
+      return;
+    }
+
+    const constructedRule = buildRule(
+      selector,
+      styles[selector] as Style,
+      curriedKeysFilter,
+    );
+
+    try {
+      if (stylesheet.insertRule) {
+        stylesheet.insertRule(constructedRule, position);
       } else {
-        // addRule is the IE-only fallback for when insertRule is unavailable;
-        // unreachable in any modern browser or jsdom so coverage is suppressed.
-        /* istanbul ignore next */
         stylesheet.addRule(
           selector,
           constructedRule.replace(/^[^{]+/, "").replace(/[{}]/g, ""),
