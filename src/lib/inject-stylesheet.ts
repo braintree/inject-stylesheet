@@ -73,6 +73,7 @@ export function injectStylesheet(
       if (stylesheet.insertRule) {
         stylesheet.insertRule(constructedRule, position);
       } else {
+        /* istanbul ignore next */
         stylesheet.addRule(
           selector,
           constructedRule.replace(/^[^{]+/, "").replace(/[{}]/g, ""),

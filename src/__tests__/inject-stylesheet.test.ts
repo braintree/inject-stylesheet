@@ -146,6 +146,70 @@ describe("injectStylesheet", () => {
     jest.mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
   });
 
+  it("skips invalid selectors inside a @media block", () => {
+    const div = document.createElement("div");
+
+    div.id = "div-media-invalid";
+    document.body.appendChild(div);
+
+    const oldColor = getStyle(div, "color");
+
+    testContext.element = injectStylesheet(
+      {
+        "@media not tv": {
+          "#div-media-invalid": {
+            color: "blue",
+          },
+          "invalid{selector}": {
+            color: "red",
+          },
+        },
+      },
+      allowlist,
+      true,
+    );
+
+    expect(getStyle(div, "color")).toBe(oldColor);
+  });
+
+  it("skips invalid outer selectors", () => {
+    const div = document.createElement("div");
+
+    div.id = "div-invalid-outer";
+    document.body.appendChild(div);
+
+    // The invalid selector should be skipped; the valid one should still apply
+    testContext.element = injectStylesheet(
+      {
+        "invalid{selector}": {
+          color: "red",
+        },
+        "#div-invalid-outer": {
+          color: "blue",
+        },
+      },
+      allowlist,
+      true,
+    );
+
+    expect(getStyle(div, "color")).toBe("blue");
+  });
+
+  it("re-throws non-DOMException/SyntaxError errors from insertRule", () => {
+    jest.spyOn(CSSStyleSheet.prototype, "insertRule");
+    jest
+      .mocked(CSSStyleSheet.prototype.insertRule)
+      .mockImplementationOnce(() => {
+        throw new TypeError("unexpected error");
+      });
+
+    expect(() => {
+      injectStylesheet({ "#foo": { color: "red" } }, allowlist, true);
+    }).toThrow(TypeError);
+
+    jest.mocked(CSSStyleSheet.prototype.insertRule).mockRestore();
+  });
+
   it("does not allow unsanitary rules", () => {
     const foo = document.createElement("div");
 
