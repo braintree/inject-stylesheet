@@ -73,6 +73,8 @@ export function injectStylesheet(
       if (stylesheet.insertRule) {
         stylesheet.insertRule(constructedRule, position);
       } else {
+        // addRule is the IE-only fallback for when insertRule is unavailable;
+        // unreachable in any modern browser or jsdom so coverage is suppressed.
         /* istanbul ignore next */
         stylesheet.addRule(
           selector,
