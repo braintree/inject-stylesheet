@@ -24,6 +24,22 @@ describe("filterStyleKeys", () => {
     expect(results).toEqual({});
   });
 
+  it("filters out blocklisted keys and keeps the rest", () => {
+    const results = filterStyleKeys(
+      {
+        color: "blue",
+        "font-size": 12,
+        "background-color": "red",
+      },
+      ["background-color"],
+      false,
+    );
+
+    expect(results.color).toBe("blue");
+    expect(results["font-size"]).toBe(12);
+    expect(results["background-color"]).toBeUndefined();
+  });
+
   it("returns only allowlisted keys", () => {
     const results = filterStyleKeys(
       {
