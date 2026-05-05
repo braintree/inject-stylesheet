@@ -1,0 +1,24 @@
+name: Security
+
+permissions:
+  contents: write
+  pull-requests: write
+  statuses: write
+  security-events: write
+  packages: read
+  actions: read
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  codeql-javascript:
+    uses: braintree/security-workflows/.github/workflows/codeql.yml@main
+    with:
+      language: javascript-typescript
+  dependency-review:
+    uses: braintree/security-workflows/.github/workflows/dependency-review.yml@main
