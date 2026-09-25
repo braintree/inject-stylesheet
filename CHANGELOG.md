@@ -3,6 +3,9 @@
 ## UNRELEASED
 
 - feat(deps): Add [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to the repo
+- restrict `{ }` characters
+- add more restrictions to `@` rules
+- block `image` and `image-set`
 
 ## 7.0.2
 
