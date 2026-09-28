@@ -118,4 +118,109 @@ describe("filterStyleValues", () => {
 
     expect(result).toEqual(expected);
   });
+
+  it("prevents any /", () => {
+    const result = filterStyleValues({
+      backgroundImage: "https://evil.example/leak",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents any }", () => {
+    const result = filterStyleValues({
+      color: "red}",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents any {", () => {
+    const result = filterStyleValues({
+      color: "body{anchor-name:--hf-field!important",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents @ rules not followed by a plain letter", () => {
+    const result = filterStyleValues({
+      color: "@\x12 ontainer",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("allows @media", () => {
+    const result = filterStyleValues({
+      color: "@media screen and (min-width: 480px)",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      color: "@media screen and (min-width: 480px)",
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents @-rules that only look like @media", () => {
+    const result = filterStyleValues({
+      color: "@mediaXfoo",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents image-set", () => {
+    const result = filterStyleValues({
+      color: "image-set('https://evil.example/leak.png' 1x)",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("prevents image", () => {
+    const result = filterStyleValues({
+      color: "image('https://evil.example/leak.png' 1x)",
+      fontWeight: "500",
+    });
+
+    const expected = {
+      fontWeight: "500",
+    };
+
+    expect(result).toEqual(expected);
+  });
 });
