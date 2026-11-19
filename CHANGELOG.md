@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## UNRELEASED
+
+### Added
+
+- **Breaking**: reject `\` and `/*` in selectors, so escaped at-rules like `@\69 mport` are blocked
+- block every `@` rule except `@media`
+- validate style keys in both allowlist and blocklist modes; malformed or escaped keys are dropped
+- block `src()` and `cross-fade()` in values
+
+### Fixed
+
+- match the blocklist case-insensitively (`Display` no longer bypasses a `display` entry)
+- stop rejecting valid selectors that merely contain `import` or `supports` (e.g. `.important`)
+
 ## 7.1.0
 
 - feat(deps): Add [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to the repo

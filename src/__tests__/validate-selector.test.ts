@@ -40,6 +40,21 @@ describe("validateSelector", () => {
     expect(validate("@anything")).toBe(false);
   });
 
+  it("should return false for escapes and comments", () => {
+    expect(validate("@\\69 mport url(//evil.test/x.css) /*")).toBe(false);
+    expect(validate(".a\\:b")).toBe(false);
+    expect(validate("a /* b")).toBe(false);
+  });
+
+  it("should allow selectors that merely contain import/supports", () => {
+    expect(validate(".important")).toBe(true);
+    expect(validate(".supports-grid")).toBe(true);
+    expect(validate(".important-banner")).toBe(true);
+    expect(validate(".supports-card")).toBe(true);
+    expect(validate("#supportsForm")).toBe(true);
+    expect(validate("@ import url(x)")).toBe(false);
+  });
+
   it("should return false if HTML is present", () => {
     expect(
       validate('</style><script>console.log("creditCard");</script> *'),

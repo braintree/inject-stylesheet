@@ -30,6 +30,9 @@ const valueFilters = [
   /expression/i,
   /url/i,
   /image/i,
+  // src() and cross-fade() can load resources like url() does
+  /\bsrc\s*\(/i,
+  /cross-fade/i,
   /javascript/i,
 ];
 

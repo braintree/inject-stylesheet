@@ -223,4 +223,20 @@ describe("filterStyleValues", () => {
 
     expect(result).toEqual(expected);
   });
+
+  it("prevents src() and cross-fade()", () => {
+    expect(
+      filterStyleValues({
+        a: "src('x.png')",
+        b: "SRC ( 'x.png' )",
+        c: "cross-fade(red, blue)",
+        d: "-webkit-cross-fade(red, blue)",
+        ok: "red",
+      }),
+    ).toEqual({ ok: "red" });
+  });
+
+  it("allows values that merely contain 'src'", () => {
+    expect(filterStyleValues({ a: "asrc" })).toEqual({ a: "asrc" });
+  });
 });
