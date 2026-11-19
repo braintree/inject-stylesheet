@@ -58,3 +58,26 @@ describe("filterStyleKeys", () => {
     expect(results.width).toBeUndefined();
   });
 });
+
+describe("filterStyleKeys key validation", () => {
+  it("drops malformed keys in blocklist and allowlist modes", () => {
+    const bad = "color:red;}@import url(x);a";
+    const style = { [bad]: "x", color: "red", "--foo": "1" };
+    expect(filterStyleKeys(style, [])).toEqual({ color: "red", "--foo": "1" });
+    expect(filterStyleKeys(style, [bad, "color"], true)).toEqual({
+      color: "red",
+    });
+  });
+});
+
+describe("filterStyleKeys blocklist case-insensitivity", () => {
+  it("blocks keys regardless of case and rejects escaped keys", () => {
+    const style = {
+      Display: "a",
+      DISPLAY: "b",
+      "\\64isplay": "c",
+      color: "red",
+    };
+    expect(filterStyleKeys(style, ["display"])).toEqual({ color: "red" });
+  });
+});
